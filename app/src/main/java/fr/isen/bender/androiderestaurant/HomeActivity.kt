@@ -11,14 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
-
         setContentView(R.layout.activity_home)
         val gameActivityIntent = Intent(this@HomeActivity, CategoryActivity::class.java)
         startActivity(gameActivityIntent)
         // Init
+
+
         val entree: Button = findViewById(R.id.Entree)
         val plat: Button = findViewById(R.id.Plat)
         val dessert: Button = findViewById(R.id.Dessert)
