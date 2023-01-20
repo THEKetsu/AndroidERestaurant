@@ -1,8 +1,6 @@
 package bender.androiderestaurant.model
 
 import com.google.gson.annotations.SerializedName
-
-
 data class Ingredients (
 
   @SerializedName("id"          ) var id         : String? = null,

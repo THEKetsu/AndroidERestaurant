@@ -17,15 +17,12 @@ class HomeActivity : AppCompatActivity() {
         val entree: Button = findViewById(R.id.Entree)
         val plat: Button = findViewById(R.id.Plat)
         val dessert: Button = findViewById(R.id.Dessert)
-
-
         entree.setOnClickListener {
             val toast = Toast.makeText(this, "Entree", Toast.LENGTH_SHORT)
             toast.show()
             gameActivityIntent.putExtra("category", getString(R.string.starters))
             startActivity(gameActivityIntent)
         }
-
         plat.setOnClickListener {
             val toast = Toast.makeText(this, "Plat", Toast.LENGTH_SHORT)
             toast.show()

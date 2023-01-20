@@ -17,30 +17,16 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var category: String
     private lateinit var binding: ActivityCategoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        /*super.onCreate(savedInstanceState)
-         setContentView(R.layout.activity_category)
-         category = intent.getStringExtra("category") ?: ""
-         val recycler = findViewById<RecyclerView>(R.id.categoryList)
-         recycler.layoutManager = LinearLayoutManager(this)
-         recycler.adapter = CategoryAdapter(arrayListOf()) {
-         }
-
-         binding = ActivityCategoryBinding.inflate(layoutInflater)
-         val view = binding.root
-         setContentView(view)
-         loadDishesFromAPI()
-     }*/
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
         category = intent.getStringExtra("category") ?: ""
         val recycler = findViewById<RecyclerView>(R.id.categoryList)
         recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = CategoryAdapter(arrayListOf()) {
-        }
-
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        recycler.adapter = CategoryAdapter(arrayListOf()) {
+        }
         loadDishesFromAPI()
     }
 
@@ -65,8 +51,6 @@ private fun loadDishesFromAPI() {
         val adapter = binding.categoryList.adapter as CategoryAdapter
         adapter.refreshList(dishCategoryFiltered?.items as ArrayList<Items>)
     }
-
-
 }
 
 
