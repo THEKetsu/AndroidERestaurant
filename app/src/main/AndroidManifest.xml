@@ -7,12 +7,17 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
         tools:targetApi="31">
         <activity
-            android:name=".SecondActivity"
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
