@@ -1,62 +1,52 @@
 package fr.isen.bender.androiderestaurant
-import android.os.Bundle
-import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import fr.isen.bender.androiderestaurant.model.DataResult
-import org.json.JSONObject
 
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+import org.json.JSONObject
 class CategoryActivity : AppCompatActivity() {
+    private lateinit var category: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_category)
+        category = intent.getStringExtra("category") ?: ""
+        val recycler = findViewById<RecyclerView>(R.id.categoryList)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = CategoryAdapter(arrayListOf()) {
+
+        }
+
+        //loadDishesFromAPI()
+    }
+/*
+* private fun loadDishesFromAPI() {
+        val url = "http://test.api.catering.bluecodegames.com/menu"
+        val jsonObject = JSONObject()
+        jsonObject.put("id_shop", "1")
+        val jsonRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonObject, {
+                Log.w("CategoryActivity", "response: $it")
+                handleAPIData(it.toString())
+            }, {
+                Log.w("CategoryActivity")
+            }
+        )
+        Volley.newRequestQueue(this).add(jsonRequest)
     }
 
+    private fun handleAPI(data: String) {
+        val dishesResult = Gson().fromJson(data, DataResult::class.java)
+        val dishCategoryFiltered = dishesResult.data.firstOrNull { it.nameFr == category }
+        val adapter = recycler.adapter as CategoryAdapter
+        adapter.refreshList(dishCategoryFiltered?.items?.map { it.nameFr } ?: listOf())
+    }*/
 
-        /*
-        *         val entree: Button = findViewById(R.id.Entree)
-        val plat: Button = findViewById(R.id.Plat)
-        val dessert: Button = findViewById(R.id.Dessert)
-        entree.setOnClickListener {
-            //rediriger vers la categorie
-            supportActionBar?.setTitle("Entree")
-        }
-
-        plat.setOnClickListener {
-            supportActionBar?.setTitle("Plat")
-            //rediriger vers la categorie
-        }
-        dessert.setOnClickListener {
-            supportActionBar?.setTitle("Dessert")
-            //rediriger vers la categorie
-        }
-*/
-
-
-private fun loadDishesFromAPI(){
-    val url = "http://test.api.catering.bluecodegames.com/menu\n"
-    val jsonObject = JSONObject()
-    jsonObject.put("id_shop","1")
-    val jsonRequest=JsonObjectRequest(
-        Request.Method.POST,url,JsonObject, {
-            Log.w("CategoryActivity", "response: $it")
-            handleAPIData(it.toString())
-        },{
-            Log.w("CategoryActivity")
-        }
-    )
-    Volley.newRequestQueue(this).add(jsonRequest)
-}
-
-
-    private fun handleAPI(data: String){
-        var dishesResult = Gson.fromJson(data, DataResult::class.java)
-        var dishCategoryFiltered = dishesResult.data.firstOrNull{it.nameFr=category}
-        var adapter = binding.categoryList.adapter as CategoryAdapter
-        adapter.refreshList(dishCategoryFiltered?.items?.map{it.nameFr}as ArrayList<String>)
-    }
 }
 
 

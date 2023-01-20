@@ -1,5 +1,7 @@
-package fr.isen.bender.androiderestaurant.model
+package bender.androiderestaurant.model
+
 import com.google.gson.annotations.SerializedName
+
 
 data class Prices (
 

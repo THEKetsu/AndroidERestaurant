@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="string_array_name">
-        <item>text_string</item>
-    </string-array>
+    <string name="starters">Entrées</string>
+    <string name="dishes">Plats</string>
+    <string name="desserts">Desserts</string>
 </resources>
