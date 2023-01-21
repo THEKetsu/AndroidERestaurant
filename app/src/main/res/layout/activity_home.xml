@@ -55,7 +55,7 @@
     </LinearLayout>
 </RelativeLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/Menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,28 +64,27 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         >
-    <Button
-        android:id="@+id/Entree"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Entrée"
-        android:layout_marginBottom="25dp"
-        />
 
-    <Button
-        android:id="@+id/Plat"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Plat"
-        android:layout_marginBottom="25dp"
-        />
-    <Button
-        android:id="@+id/Dessert"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Dessert"
-        android:layout_marginBottom="25dp"
-        />
+        <Button
+            android:id="@+id/Entree"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/starters" />
+
+        <Button
+            android:id="@+id/Plat"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/dishes" />
+
+        <Button
+            android:id="@+id/Dessert"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/desserts" />
     </LinearLayout>
 
 </LinearLayout>
