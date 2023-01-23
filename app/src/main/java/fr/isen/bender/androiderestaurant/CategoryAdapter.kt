@@ -7,9 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bender.androiderestaurant.model.Items
 import com.squareup.picasso.Picasso
-class CategoryAdapter(private val dishes: List<Items>, private val clickListener: (Items) -> Unit) : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
+class CategoryAdapter(private val dishes: List<Items>
+,private val clickListener: (Items) -> Unit) :
+    RecyclerView.Adapter<CategoryAdapter.MyViewHolder>()
+{
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val cellName = view.findViewById<TextView>(R.id.cellNone)
+        val cellNone = view.findViewById<TextView>(R.id.cellNone)
         val cellPicture = view.findViewById<ImageView>(R.id.cellPicture)
         val cellPrice = view.findViewById<TextView>(R.id.cellPrice)
     }
@@ -20,7 +23,7 @@ class CategoryAdapter(private val dishes: List<Items>, private val clickListener
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val dish = dishes[position]
-        holder.cellName.text = dish.nameFr
+        holder.cellNone.text = dish.nameFr
         holder.cellPrice.text=dish.prices[0].price
         val firstImage = dish.images[0]
         if (firstImage.isNotEmpty()){
@@ -31,9 +34,9 @@ class CategoryAdapter(private val dishes: List<Items>, private val clickListener
         }
     }
     override fun getItemCount(): Int = dishes.size
-
     fun refreshList(dishesFromAPI: List<Items>) {
         var dishes = dishesFromAPI
+        println("Test :"+dishes)
         notifyDataSetChanged()
     }
 }
