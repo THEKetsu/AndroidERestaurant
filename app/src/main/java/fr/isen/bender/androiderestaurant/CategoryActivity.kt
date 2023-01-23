@@ -1,5 +1,6 @@
 package fr.isen.bender.androiderestaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -16,19 +17,39 @@ import org.json.JSONObject
 class CategoryActivity : AppCompatActivity() {
     private lateinit var category: String
     private lateinit var binding: ActivityCategoryBinding
+    private var itemsList = ArrayList<Items>()
+    private lateinit var CategoryAdapter : CategoryAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category)
-        category = intent.getStringExtra("category") ?: ""
+        category = intent.getStringExtra("categoryName") ?: ""
+        this.title=category
+
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
+        val view = binding.root
+
+        val menuName = intent.getStringExtra("categoryName") ?: ""
+        val menuList = intent.getStringArrayListExtra("List_Meal")
+        setContentView(view)
+        if (menuList != null) {
+            supportActionBar?.title = menuName
+
+            CategoryAdapter = CategoryAdapter(itemsList) {
+                val intent = Intent(this, CategoryActivity::class.java)
+                intent.putExtra("categoryName", "Entrées")
+                startActivity(intent)
+            }
+
+        }
         val recycler = findViewById<RecyclerView>(R.id.categoryList)
         recycler.layoutManager = LinearLayoutManager(this)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
-        val view = binding.root
         setContentView(view)
         recycler.adapter = CategoryAdapter(arrayListOf()) {
         }
         loadDishesFromAPI()
     }
+
 
 private fun loadDishesFromAPI() {
         val url = "http://test.api.catering.bluecodegames.com/menu"
