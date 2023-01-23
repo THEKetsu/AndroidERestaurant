@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import bender.androiderestaurant.model.Items
+import  fr.isen.bender.androiderestaurant.model.Items
 import fr.isen.bender.androiderestaurant.databinding.ActivityCategoryBinding
 import fr.isen.bender.androiderestaurant.databinding.ActivityDetailBinding
 

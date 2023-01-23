@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import bender.androiderestaurant.model.DataResult
-import bender.androiderestaurant.model.Items
+import  fr.isen.bender.androiderestaurant.model.DataResult
+import  fr.isen.bender.androiderestaurant.model.Items
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -18,38 +17,37 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var category: String
     private lateinit var binding: ActivityCategoryBinding
     private var itemsList = ArrayList<Items>()
-    private lateinit var CategoryAdapter : CategoryAdapter
+    private lateinit var myCategoryAdapter : CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        category = intent.getStringExtra("categoryName") ?: ""
+        category = intent.getStringExtra("category") ?: ""
         this.title=category
 
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         val view = binding.root
-
-        val menuName = intent.getStringExtra("categoryName") ?: ""
-        val menuList = intent.getStringArrayListExtra("List_Meal")
         setContentView(view)
+        val menuName = intent.getStringExtra("categoryName") ?: ""
+        val menuList=intent.getStringArrayListExtra("List_Meal")
         if (menuList != null) {
             supportActionBar?.title = menuName
-
-            CategoryAdapter = CategoryAdapter(itemsList) {
+            myCategoryAdapter = CategoryAdapter(itemsList){
                 val intent = Intent(this, CategoryActivity::class.java)
                 intent.putExtra("categoryName", "Entrées")
                 startActivity(intent)
             }
-
+            val layoutManager = LinearLayoutManager(applicationContext)
+            binding.categoryList.layoutManager = layoutManager
+            binding.categoryList.adapter = myCategoryAdapter
+            binding.categoryList.layoutManager = LinearLayoutManager(this)
         }
+        /*
         val recycler = findViewById<RecyclerView>(R.id.categoryList)
         recycler.layoutManager = LinearLayoutManager(this)
-        binding = ActivityCategoryBinding.inflate(layoutInflater)
-        setContentView(view)
         recycler.adapter = CategoryAdapter(arrayListOf()) {
-        }
+        */
         loadDishesFromAPI()
     }
-
 
 private fun loadDishesFromAPI() {
         val url = "http://test.api.catering.bluecodegames.com/menu"
@@ -69,6 +67,7 @@ private fun loadDishesFromAPI() {
     private fun handleAPI(data: String) {
         val dishesResult = Gson().fromJson(data, DataResult::class.java)
         val dishCategoryFiltered = dishesResult.data.firstOrNull { it.nameFr == category }
+
         val adapter = binding.categoryList.adapter as CategoryAdapter
         adapter.refreshList(dishCategoryFiltered?.items as ArrayList<Items>)
     }

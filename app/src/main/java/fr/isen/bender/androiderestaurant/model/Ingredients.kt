@@ -1,4 +1,4 @@
-package bender.androiderestaurant.model
+package fr.isen.bender.androiderestaurant.model
 
 import com.google.gson.annotations.SerializedName
 data class Ingredients (
