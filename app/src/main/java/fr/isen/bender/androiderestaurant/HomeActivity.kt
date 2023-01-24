@@ -16,31 +16,32 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setContentView(R.layout.activity_home)
         // Init
-        val gameActivityIntent = Intent(this@HomeActivity, CategoryActivity::class.java)
+        val intent = Intent(this@HomeActivity, CategoryActivity::class.java)
         val entree: Button = findViewById(R.id.Entree)
         val plat: Button = findViewById(R.id.Plat)
         val dessert: Button = findViewById(R.id.Dessert)
 
-        entree.setOnClickListener {
+        binding.Entree.setOnClickListener {
             val toast = Toast.makeText(this, "Entree", Toast.LENGTH_SHORT)
             toast.show()
-            gameActivityIntent.putExtra("category", getString(R.string.starters))
-            startActivity(gameActivityIntent)
+            val mealList = resources.getStringArray(R.array.e_list).toList() as ArrayList<String>
+            intent.putExtra("category", getString(R.string.starters))
+            startActivity(intent)
         }
-        plat.setOnClickListener {
+        binding.Plat.setOnClickListener {
             val toast = Toast.makeText(this, "Plat", Toast.LENGTH_SHORT)
+            val mealList = resources.getStringArray(R.array.p_list).toList() as ArrayList<String>
             toast.show()
-            gameActivityIntent.putExtra("category", getString(R.string.starters))
-            startActivity(gameActivityIntent)
+            intent.putExtra("category", getString(R.string.dishes))
+            startActivity(intent)
         }
-        dessert.setOnClickListener {
+        binding.Dessert.setOnClickListener {
             val toast = Toast.makeText(this, "Dessert", Toast.LENGTH_SHORT)
+            val mealList = resources.getStringArray(R.array.d_list).toList() as ArrayList<String>
             toast.show()
-
-            gameActivityIntent.putExtra("category", getString(R.string.starters))
-            startActivity(gameActivityIntent)
+            intent.putExtra("category", getString(R.string.desserts))
+            startActivity(intent)
         }
     }
     override fun onDestroy() {

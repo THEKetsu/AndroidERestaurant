@@ -3,4 +3,21 @@
     <string name="starters">Entrées</string>
     <string name="dishes">Plats</string>
     <string name="desserts">Desserts</string>
+    <string-array name="e_list">
+        <item>Entrée 1</item>
+        <item>Entrée 2</item>
+    </string-array>
+
+    <string-array name="p_list">
+        <item>Plat 1</item>
+        <item>Plat 2</item>
+        <item>Plat 3</item>
+        <item>Plat 4</item>
+        <item>Plat 5</item>
+    </string-array>
+
+    <string-array name="d_list">
+        <item>Dessert 1</item>
+        <item>Dessert 2</item>
+    </string-array>
 </resources>

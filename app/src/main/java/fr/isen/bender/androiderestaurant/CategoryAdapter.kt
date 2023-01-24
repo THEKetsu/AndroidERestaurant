@@ -18,8 +18,7 @@ class CategoryAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_cell, parent, false)
-        println("Création de la View :"+view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_cell2, parent, false)
         return MyViewHolder(view)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
