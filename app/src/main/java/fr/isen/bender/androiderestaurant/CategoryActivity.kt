@@ -23,8 +23,8 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         category = intent.getStringExtra("category") ?: ""
         this.title = category
-        println(title)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
+
         val view = binding.root
         setContentView(view)
         val menuName = intent.getStringExtra("categoryName") ?: ""
@@ -53,7 +53,7 @@ private fun loadDishesFromAPI() {
         jsonObject.put("id_shop", "1")
         val jsonRequest = JsonObjectRequest(
             Request.Method.POST, url, jsonObject, {
-                Log.w("CategoryActivity", "response: $it")
+                //Log.w("CategoryActivity", "response: $it")
                 handleAPI(it.toString())
             }, {error ->
                 Log.e("CategoryActivity", "Error with the request: $error")
@@ -66,7 +66,9 @@ private fun loadDishesFromAPI() {
         println(category)
         val dishesResult = Gson().fromJson(data, DataResult::class.java)
         val dishCategoryFiltered = dishesResult.data.firstOrNull { it.nameFr == category }
+        println("Dish: "+dishCategoryFiltered)
         val adapter = binding.categoryList.adapter as CategoryAdapter
+        println("Adapter:$adapter")
         adapter.refreshList(dishCategoryFiltered?.items as ArrayList<Items>)
     }
 }

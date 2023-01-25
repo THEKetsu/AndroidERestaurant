@@ -25,6 +25,11 @@ class CategoryAdapter(
         val dish = dishes[position]
         holder.cellNone.text = dish.nameFr
         holder.cellPrice.text=dish.prices[0].price
+        println("\n \n Information"+dish)
+        println("Position : "+dish)
+        println("Nom : "+dish.nameFr)
+        println("Prix: "+dish.prices[0].price)
+        println("\n \n")
         val firstImage = dish.images[0]
         if (firstImage.isNotEmpty()){
             Picasso.get().load(firstImage).into(holder.cellPicture);
@@ -34,8 +39,11 @@ class CategoryAdapter(
         }
     }
     override fun getItemCount(): Int = dishes.size
+
+
     fun refreshList(dishesFromAPI: List<Items>) {
         dishes = dishesFromAPI
+        println("Total Nombre d'élements :"+getItemCount())
         println("Test :"+dishes)
         notifyDataSetChanged()
     }

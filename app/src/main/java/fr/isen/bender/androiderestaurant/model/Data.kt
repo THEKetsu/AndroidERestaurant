@@ -1,6 +1,7 @@
 package fr.isen.bender.androiderestaurant.model
 
 import com.google.gson.annotations.SerializedName
+import fr.isen.bender.androiderestaurant.model.Items
 
 
 data class Data (
