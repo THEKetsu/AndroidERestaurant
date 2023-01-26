@@ -22,6 +22,8 @@ class CategoryAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        println("Création du View Holder : "+viewType)
+        println("Parent :"+parent)
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_cell2, parent, false)
         return MyViewHolder(view)
     }
@@ -38,6 +40,7 @@ class CategoryAdapter(
         if (firstImage.isNotEmpty()){
             Picasso.get().load(firstImage).into(holder.cellPicture);
         }
+        println("Flag avant détail \n")
         holder.itemView.setOnClickListener{
             println("Je clique sur la view"+holder+"plat"+dish)
             clickListener(dish)

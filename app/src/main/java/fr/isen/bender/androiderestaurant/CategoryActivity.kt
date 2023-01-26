@@ -31,11 +31,9 @@ class CategoryActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         if (menuList != null) {
+            println("\n\nPassage vers detail Activity \n\n")
             supportActionBar?.title = menuName
             myCategoryAdapter = CategoryAdapter(itemsList) {
-                val intent = Intent(this, CategoryActivity::class.java)
-                intent.putExtra("categoryName", menuName)
-                startActivity(intent)
             }
             val layoutManager = LinearLayoutManager(applicationContext)
             binding.categoryList.adapter = myCategoryAdapter
@@ -44,6 +42,9 @@ class CategoryActivity : AppCompatActivity() {
         val recycler = findViewById<RecyclerView>(R.id.categoryList)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = CategoryAdapter(arrayListOf()) {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("detail", it.toString())
+            startActivity(intent)
         }
         loadDishesFromAPI()
     }
@@ -66,12 +67,10 @@ private fun loadDishesFromAPI() {
     }
     private fun handleAPI(data: String) {
         println("function handleAPI")
-        println(category)
         val dishesResult = Gson().fromJson(data, DataResult::class.java)
         val dishCategoryFiltered = dishesResult.data.firstOrNull { it.nameFr == category }
         println("Dish: "+dishCategoryFiltered)
         val adapter = binding.categoryList.adapter as CategoryAdapter
-        println("Adapter:$adapter")
         adapter.refreshList(dishCategoryFiltered?.items as ArrayList<Items>)
     }
 }
