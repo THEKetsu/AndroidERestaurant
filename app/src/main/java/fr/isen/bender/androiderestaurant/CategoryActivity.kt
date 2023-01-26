@@ -3,17 +3,19 @@ package fr.isen.bender.androiderestaurant
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import  fr.isen.bender.androiderestaurant.model.DataResult
-import  fr.isen.bender.androiderestaurant.model.Items
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import fr.isen.bender.androiderestaurant.databinding.ActivityCategoryBinding
+import fr.isen.bender.androiderestaurant.model.DataResult
+import fr.isen.bender.androiderestaurant.model.Items
 import org.json.JSONObject
+
 class CategoryActivity : AppCompatActivity() {
     private lateinit var category: String
     private lateinit var binding: ActivityCategoryBinding
@@ -21,14 +23,13 @@ class CategoryActivity : AppCompatActivity() {
     private lateinit var myCategoryAdapter : CategoryAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        category = intent.getStringExtra("category") ?: ""
-        this.title = category
         binding = ActivityCategoryBinding.inflate(layoutInflater)
-
-        val view = binding.root
-        setContentView(view)
+        category = intent.getStringExtra("category") ?: ""
         val menuName = intent.getStringExtra("categoryName") ?: ""
         val menuList = intent.getStringArrayListExtra("List_Meal")
+        this.title = category
+        val view = binding.root
+        setContentView(view)
         if (menuList != null) {
             supportActionBar?.title = menuName
             myCategoryAdapter = CategoryAdapter(itemsList) {
@@ -48,6 +49,7 @@ class CategoryActivity : AppCompatActivity() {
     }
 
 private fun loadDishesFromAPI() {
+    println("function loadDishesFromAPI")
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val jsonObject = JSONObject()
         jsonObject.put("id_shop", "1")
@@ -63,6 +65,7 @@ private fun loadDishesFromAPI() {
         Volley.newRequestQueue(this).add(jsonRequest)
     }
     private fun handleAPI(data: String) {
+        println("function handleAPI")
         println(category)
         val dishesResult = Gson().fromJson(data, DataResult::class.java)
         val dishCategoryFiltered = dishesResult.data.firstOrNull { it.nameFr == category }

@@ -1,4 +1,6 @@
 package fr.isen.bender.androiderestaurant
+import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import  fr.isen.bender.androiderestaurant.model.Items
 import com.squareup.picasso.Picasso
+import fr.isen.bender.androiderestaurant.model.Ingredients
+
 class CategoryAdapter(
     private var dishes: List<Items>,
     private val clickListener: (Items) -> Unit)
@@ -25,8 +29,8 @@ class CategoryAdapter(
         val dish = dishes[position]
         holder.cellNone.text = dish.nameFr
         holder.cellPrice.text=dish.prices[0].price
-        println("\n \n Information"+dish)
-        println("Position : "+dish)
+        println("\n \n")
+        println("Information :"+dish)
         println("Nom : "+dish.nameFr)
         println("Prix: "+dish.prices[0].price)
         println("\n \n")
@@ -35,6 +39,7 @@ class CategoryAdapter(
             Picasso.get().load(firstImage).into(holder.cellPicture);
         }
         holder.itemView.setOnClickListener{
+            println("Je clique sur la view"+holder+"plat"+dish)
             clickListener(dish)
         }
     }
@@ -44,7 +49,7 @@ class CategoryAdapter(
     fun refreshList(dishesFromAPI: List<Items>) {
         dishes = dishesFromAPI
         println("Total Nombre d'élements :"+getItemCount())
-        println("Test :"+dishes)
+        println("Tout les plats :"+dishes)
         notifyDataSetChanged()
     }
 }
