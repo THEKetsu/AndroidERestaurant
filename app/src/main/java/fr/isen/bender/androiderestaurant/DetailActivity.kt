@@ -3,8 +3,6 @@ package fr.isen.bender.androiderestaurant
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.widget.Button
-import android.widget.Toast
 import  fr.isen.bender.androiderestaurant.model.Items
 import fr.isen.bender.androiderestaurant.databinding.ActivityCategoryBinding
 import fr.isen.bender.androiderestaurant.databinding.DetailActivityBinding
@@ -15,10 +13,10 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var name : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        println("Detail Activity :")
         binding = DetailActivityBinding.inflate(layoutInflater)
-        setContentView(R.layout.detail_activity)
         setContentView(binding.root)
-        Item = intent.getSerializableExtra("dish") as Items
+        Item = intent.getSerializableExtra("Detail") as Items
         name = Item.nameFr.toString()
         val actionBar = supportActionBar
         actionBar?.title = name

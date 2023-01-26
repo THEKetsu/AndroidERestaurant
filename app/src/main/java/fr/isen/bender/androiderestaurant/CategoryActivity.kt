@@ -3,10 +3,8 @@ package fr.isen.bender.androiderestaurant
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -25,38 +23,27 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         category = intent.getStringExtra("category") ?: ""
-        val menuName = intent.getStringExtra("categoryName") ?: ""
-        val menuList = intent.getStringArrayListExtra("List_Meal")
         this.title = category
         val view = binding.root
         setContentView(view)
-        if (menuList != null) {
-            println("\n\nPassage vers detail Activity \n\n")
-            supportActionBar?.title = menuName
-            myCategoryAdapter = CategoryAdapter(itemsList) {
-            }
-            val layoutManager = LinearLayoutManager(applicationContext)
-            binding.categoryList.adapter = myCategoryAdapter
-            binding.categoryList.layoutManager = LinearLayoutManager(this)
-        }
-        val recycler = findViewById<RecyclerView>(R.id.categoryList)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = CategoryAdapter(arrayListOf()) {
+        binding.categoryList.layoutManager = LinearLayoutManager(this)
+        binding.categoryList.adapter = CategoryAdapter(arrayListOf()) {
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("detail", it.toString())
+            intent.putExtra("Detail", it)
             startActivity(intent)
         }
         loadDishesFromAPI()
     }
 
 private fun loadDishesFromAPI() {
+    Volley.newRequestQueue(this)
     println("function loadDishesFromAPI")
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val jsonObject = JSONObject()
         jsonObject.put("id_shop", "1")
         val jsonRequest = JsonObjectRequest(
             Request.Method.POST, url, jsonObject, {
-                //Log.w("CategoryActivity", "response: $it")
+                Log.w("CategoryActivity", "response: $it")
                 handleAPI(it.toString())
             }, {error ->
                 Log.e("CategoryActivity", "Error with the request: $error")
