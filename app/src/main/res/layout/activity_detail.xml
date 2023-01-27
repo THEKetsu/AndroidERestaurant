@@ -43,12 +43,12 @@
 
         <TextView
             android:id="@+id/Quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
             android:layout_marginStart="174dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="174dp"
-            android:text="TextView"
+            android:text="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Ingredients" />
@@ -57,11 +57,10 @@
             android:id="@+id/SubButton"
             android:layout_width="92dp"
             android:layout_height="58dp"
-            android:layout_marginTop="244dp"
+            android:layout_marginTop="52dp"
             app:layout_constraintEnd_toStartOf="@+id/Quantity"
-            app:layout_constraintHorizontal_bias="0.541"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Ingredients"
             app:srcCompat="@drawable/substract_button" />
 
         <TextView
@@ -77,9 +76,10 @@
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="118dp"
+            android:layout_marginTop="136dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.456"
             app:layout_constraintStart_toEndOf="@+id/Quantity"
             app:layout_constraintTop_toBottomOf="@+id/DetailImage"
             app:srcCompat="@drawable/add_button" />

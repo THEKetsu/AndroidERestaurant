@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.bender.androiderestaurant.model.Ingredients
 
 class CategoryAdapter(
-    private var dishes: List<Items>,
+    private var dishes: ArrayList<Items>,
     private val clickListener: (Items) -> Unit)
     :RecyclerView.Adapter<CategoryAdapter.MyViewHolder>(){
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -49,7 +49,7 @@ class CategoryAdapter(
     override fun getItemCount(): Int = dishes.size
 
 
-    fun refreshList(dishesFromAPI: List<Items>) {
+    fun refreshList(dishesFromAPI: ArrayList<Items>) {
         dishes = dishesFromAPI
         println("Total Nombre d'élements :"+getItemCount())
         println("Tout les plats :"+dishes)

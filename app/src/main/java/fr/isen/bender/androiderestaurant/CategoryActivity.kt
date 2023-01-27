@@ -47,7 +47,6 @@ private fun loadDishesFromAPI() {
                 handleAPI(it.toString())
             }, {error ->
                 Log.e("CategoryActivity", "Error with the request: $error")
-                //afficher un message d'erreur à l'utilisateur ou gérer l'erreur de manière appropriée
             }
         )
         Volley.newRequestQueue(this).add(jsonRequest)
