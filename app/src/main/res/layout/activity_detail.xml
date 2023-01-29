@@ -14,6 +14,7 @@
             android:id="@+id/DetailImage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="#F44336"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -23,10 +24,13 @@
             android:id="@+id/menuName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
             android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DetailImage" />
 
@@ -34,10 +38,11 @@
             android:id="@+id/Ingredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menuName" />
 
@@ -45,43 +50,42 @@
             android:id="@+id/Quantity"
             android:layout_width="48dp"
             android:layout_height="50dp"
-            android:layout_marginStart="174dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="174dp"
+            android:layout_marginTop="88dp"
+            android:gravity="center"
             android:text="0"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/Ingredients"
+            app:layout_constraintStart_toStartOf="@+id/Ingredients"
             app:layout_constraintTop_toBottomOf="@+id/Ingredients" />
 
         <ImageView
             android:id="@+id/SubButton"
-            android:layout_width="92dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="52dp"
-            app:layout_constraintEnd_toStartOf="@+id/Quantity"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="92dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ingredients"
+            app:layout_constraintTop_toTopOf="@+id/Quantity"
             app:srcCompat="@drawable/substract_button" />
 
         <TextView
             android:id="@+id/TotalPrice"
             android:layout_width="225dp"
             android:layout_height="50dp"
-            android:text="TextView"
+            android:layout_marginBottom="88dp"
+            android:gravity="center"
+            android:text="0 "
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.548"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="84dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.456"
-            app:layout_constraintStart_toEndOf="@+id/Quantity"
-            app:layout_constraintTop_toBottomOf="@+id/DetailImage"
+            app:layout_constraintTop_toTopOf="@+id/Quantity"
             app:srcCompat="@drawable/add_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

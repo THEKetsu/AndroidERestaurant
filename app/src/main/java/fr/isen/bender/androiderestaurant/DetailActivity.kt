@@ -20,12 +20,12 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         Item = intent.getSerializableExtra("Detail") as Items
         name = Item.nameFr.toString()
+        binding.menuName.text=Item.nameFr
         val actionBar = supportActionBar
 
         if (Item.images.isNotEmpty()) {
             Picasso.get().load(Item.images[0]).into(binding.DetailImage);
         }
-
         actionBar?.title = name
         val ingredients = Item.ingredients
         if (Item.ingredients.isNotEmpty()){
@@ -65,7 +65,7 @@ class DetailActivity : AppCompatActivity() {
                 Editable.Factory.getInstance().newEditable(addition.toString())
             )
             val number = addition * priceunique!!
-            binding.TotalPrice.text = number.toString()
+            binding.TotalPrice.text = number.toString()+"$"
         }
     }
 }
