@@ -47,8 +47,6 @@ class CategoryAdapter(
         }
     }
     override fun getItemCount(): Int = dishes.size
-
-
     fun refreshList(dishesFromAPI: ArrayList<Items>) {
         dishes = dishesFromAPI
         println("Total Nombre d'élements :"+getItemCount())

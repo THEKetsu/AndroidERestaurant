@@ -3,12 +3,13 @@ package fr.isen.bender.androiderestaurant
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.widget.Button
-import android.widget.Toast
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import  fr.isen.bender.androiderestaurant.model.Items
 import fr.isen.bender.androiderestaurant.databinding.ActivityCategoryBinding
 import fr.isen.bender.androiderestaurant.databinding.ActivityDetailBinding
+import org.json.JSONObject
+import java.io.File
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -57,7 +58,6 @@ class DetailActivity : AppCompatActivity() {
                 binding.TotalPrice.text = number.toString()
             }
         }
-
         /*Sub Button */
         binding.SubButton.setOnClickListener {
             addition--
@@ -67,5 +67,14 @@ class DetailActivity : AppCompatActivity() {
             val number = addition * priceunique!!
             binding.TotalPrice.text = number.toString()+"$"
         }
+        data class OrderData(val name: String, val totalPrice: String)
+        val data = OrderData(name, number.toString())
+        val gson = Gson()
+        val json = gson.toJson(data)
+        binding.Chariot.setOnClickListener {
+            val file = File(getExternalFilesDir(null), "data.json")
+            file.appendText(json)
+        }
+
     }
 }
